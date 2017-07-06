@@ -1,4 +1,4 @@
-package com.weiliang.coolweather;
+package com.weiliang.coolweather.fragment;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -17,6 +17,9 @@ import android.widget.Toast;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
+import com.weiliang.coolweather.HttpUtils;
+import com.weiliang.coolweather.R;
+import com.weiliang.coolweather.Utility;
 import com.weiliang.coolweather.db.City;
 import com.weiliang.coolweather.db.County;
 import com.weiliang.coolweather.db.Province;

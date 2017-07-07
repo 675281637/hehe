@@ -126,7 +126,7 @@ public class ChooseAreaFragment extends Fragment {
 
         }else{
            // 没有去服务拿
-            String address="http://guolin.tech/api/china";
+            String address="http://guolin.tech/api/china/";
             queryFromServer(address,"province");
 
         }

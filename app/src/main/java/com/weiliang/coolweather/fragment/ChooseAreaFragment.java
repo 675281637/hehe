@@ -1,6 +1,7 @@
 package com.weiliang.coolweather.fragment;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -20,6 +21,7 @@ import com.squareup.okhttp.Response;
 import com.weiliang.coolweather.HttpUtils;
 import com.weiliang.coolweather.R;
 import com.weiliang.coolweather.Utility;
+import com.weiliang.coolweather.activity.WeatherActivity;
 import com.weiliang.coolweather.db.City;
 import com.weiliang.coolweather.db.County;
 import com.weiliang.coolweather.db.Province;
@@ -84,8 +86,13 @@ public class ChooseAreaFragment extends Fragment {
                     //如果点击市，显示县
                     mSelectCity = cityList.get(position);
                     queryCounty();
-
-
+                } else if (currentLevel==LEVEL_COUNTY){
+                    //跳入天气界面，并传入天气id
+                    String weatherId = countyList.get(position).getWeatherId();
+                    Intent intent = new Intent(getActivity(), WeatherActivity.class);
+                    intent.putExtra("weather_id",weatherId);
+                    startActivity(intent);
+                    getActivity().finish();
                 }
             }
         });

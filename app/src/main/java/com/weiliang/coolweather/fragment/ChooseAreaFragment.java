@@ -21,6 +21,7 @@ import com.squareup.okhttp.Response;
 import com.weiliang.coolweather.HttpUtils;
 import com.weiliang.coolweather.R;
 import com.weiliang.coolweather.Utility;
+import com.weiliang.coolweather.activity.MainActivity;
 import com.weiliang.coolweather.activity.WeatherActivity;
 import com.weiliang.coolweather.db.City;
 import com.weiliang.coolweather.db.County;
@@ -88,11 +89,22 @@ public class ChooseAreaFragment extends Fragment {
                     queryCounty();
                 } else if (currentLevel==LEVEL_COUNTY){
                     //跳入天气界面，并传入天气id
+
+                    //判断fragment要停在策划菜单还是进去主界面
+
                     String weatherId = countyList.get(position).getWeatherId();
-                    Intent intent = new Intent(getActivity(), WeatherActivity.class);
-                    intent.putExtra("weather_id",weatherId);
-                    startActivity(intent);
-                    getActivity().finish();
+                    if (getActivity()instanceof MainActivity) {
+                        Intent intent = new Intent(getActivity(), WeatherActivity.class);
+                        intent.putExtra("weather_id", weatherId);
+                        startActivity(intent);
+                        getActivity().finish();
+                    }else if (getActivity()instanceof WeatherActivity){
+                        WeatherActivity activity= (WeatherActivity) getActivity();
+                        activity.mDrawerLayout.closeDrawers();
+                        activity.mSwipeRefresh.setRefreshing(true);
+                        activity.requestWeather(weatherId);
+                    }
+
                 }
             }
         });

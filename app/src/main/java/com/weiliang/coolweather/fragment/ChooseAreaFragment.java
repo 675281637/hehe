@@ -199,9 +199,6 @@ public class ChooseAreaFragment extends Fragment {
     }
 
 
-
-
-
     //根据传入的地址和类型从服务器查询省市县的数据
     private void queryFromServer(String address, final String type) {
         //先有个等候
@@ -221,10 +218,11 @@ public class ChooseAreaFragment extends Fragment {
                 });
 
             }
-            boolean mResult=false;
+
             @Override
             public void onResponse(Response response) throws IOException {
                 String resonseText= response.body().string();
+                boolean mResult=false;
                 //根据类型
                 if ("province".equals(type)){
                     //解析省的数据

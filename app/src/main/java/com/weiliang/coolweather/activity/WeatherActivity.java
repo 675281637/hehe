@@ -178,7 +178,7 @@ public class WeatherActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        if (weather!=null&&"ok".equals(weather.status)){
+                        if (weather!=null&& "ok".equals(weather.status)){
                             SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(WeatherActivity.this);
                             SharedPreferences.Editor edit = sp.edit();
                             edit.putString("weather",responseText);

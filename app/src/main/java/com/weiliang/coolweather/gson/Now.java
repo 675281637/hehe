@@ -9,8 +9,11 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class Now {
+
     //温度
+    @SerializedName("tmp")
     public String temperature;
+
     @SerializedName("cond")
     public More more;
     //多云

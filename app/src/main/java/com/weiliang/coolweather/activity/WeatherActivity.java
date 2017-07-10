@@ -1,5 +1,6 @@
 package com.weiliang.coolweather.activity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
@@ -27,6 +28,7 @@ import com.weiliang.coolweather.R;
 import com.weiliang.coolweather.Utility;
 import com.weiliang.coolweather.gson.Forecast;
 import com.weiliang.coolweather.gson.Weather;
+import com.weiliang.coolweather.service.AutoUpdateService;
 
 import java.io.IOException;
 
@@ -179,6 +181,9 @@ public class WeatherActivity extends AppCompatActivity {
         mCarWashText.setText(CarWash);
         mSportText.setText(sport);
         mWeatherLayout.setVisibility(View.VISIBLE);
+        Intent intent = new Intent(this, AutoUpdateService.class);
+        startService(intent);
+
     }
 
     public void requestWeather(String weatherId) {
@@ -210,6 +215,8 @@ public class WeatherActivity extends AppCompatActivity {
                             edit.putString("weather",responseText);
                             edit.commit();
                             showWeatherInfo(weather);
+
+
 
                         }else{
                             Toast.makeText(WeatherActivity.this, "获取天气信息失败", Toast.LENGTH_SHORT).show();
